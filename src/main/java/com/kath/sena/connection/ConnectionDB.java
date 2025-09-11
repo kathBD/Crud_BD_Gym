@@ -8,7 +8,7 @@ public class ConnectionDB {
 
     private static final String URL = "jdbc:mysql://localhost:3306/vibrafitapp";
     private static final String USER = "root";
-    private static final String PASSWORD = "Test1234";
+    private static final String PASSWORD = "Tsuki28ñ(1518)";
 
     public static Connection connect() {
         Connection connection = null;
