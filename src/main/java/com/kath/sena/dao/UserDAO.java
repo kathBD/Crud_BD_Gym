@@ -11,13 +11,13 @@ public class UserDAO {
 
     // Insertar usuario
     public boolean insert(User user) {
-        String sql = "INSERT INTO usuarios (usuario_id, nombre, correo, contrasena, telefono, fecha_nacimiento, peso, estatura, sexo, esta_activo, rol_id, especialidad, horario_inicio, horario_fin) " +
+        String sql = "INSERT INTO usuarios (usuario_id, nombre, correo, password, telefono, fecha_nacimiento, peso, estatura, sexo, esta_activo, rol_id, especialidad, horario_inicio, horario_fin) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConnectionDB.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, user.getUserId());
+            stmt.setInt(1, user.getUserId());
             stmt.setString(2, user.getName());
             stmt.setString(3, user.getEmail());
             stmt.setString(4, user.getPassword());
@@ -52,10 +52,10 @@ public class UserDAO {
 
             while (rs.next()) {
                 User u = new User(
-                        rs.getString("usuario_id"),
+                        rs.getInt("usuario_id"),
                         rs.getString("nombre"),
                         rs.getString("correo"),
-                        rs.getString("contrasena"),
+                        rs.getString("password"),
                         rs.getString("telefono"),
                         rs.getDate("fecha_nacimiento").toLocalDate(),
                         rs.getBigDecimal("peso"),
@@ -79,7 +79,7 @@ public class UserDAO {
 
     // Actualizar usuario
     public boolean update(User user) {
-        String sql = "UPDATE usuarios SET nombre=?, correo=?, contrasena=?, telefono=?, fecha_nacimiento=?, peso=?, estatura=?, sexo=?, esta_activo=?, rol_id=?, especialidad=?, horario_inicio=?, horario_fin=? WHERE usuario_id=?";
+        String sql = "UPDATE usuarios SET nombre=?, correo=?, password=?, telefono=?, fecha_nacimiento=?, peso=?, estatura=?, sexo=?, esta_activo=?, rol_id=?, especialidad=?, horario_inicio=?, horario_fin=? WHERE usuario_id=?";
 
         try (Connection conn = ConnectionDB.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -97,7 +97,7 @@ public class UserDAO {
             stmt.setString(11, user.getEspecialidad());
             stmt.setTime(12, user.getHorarioInicio());
             stmt.setTime(13, user.getHorarioFin());
-            stmt.setString(14, user.getUserId());
+            stmt.setInt(14, user.getUserId());
 
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;

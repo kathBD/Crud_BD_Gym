@@ -12,18 +12,19 @@ public class Main {
         UserDAO dao = new UserDAO();
 
         // Insertar usuario ejemplo
-        User user = new User("U0010", "Luna Fer", "Luna@example.com", "pass999", "3238547711",
-                LocalDate.of(1980, 8, 17), new BigDecimal("80.5"), new BigDecimal("1.70"),
+        User user = new User(0250, "Ana Castillo", "Ana.C@example.com", "pass789", "3001184569",
+                LocalDate.of(1990, 11, 18), new BigDecimal("90.5"), new BigDecimal("1.60"),
                 "F", true, 1, null, null, null, null);
         if (dao.insert(user)) {
             System.out.println("Usuario insertado correctamente.");
         }
 
+
         // Listar todos
         dao.getAllUsers().forEach(u -> System.out.println(u.getUserId() + " - " + u.getName()));
 
         // Eliminar un usuario por ID
-        boolean deleted = dao.delete("U0010"); // cambia por un ID existente
+        boolean deleted = dao.delete("001"); // cambia por un ID existente
         if (deleted) {
             System.out.println("❌ Usuario eliminado.");
         } else {
@@ -34,7 +35,7 @@ public class Main {
         //Actualizar
 
         // 🔄 Actualizar un usuario existente (cambio de correo)
-        User updatedUser = new User("U002", "Carlos Mejía", "carlos.nuevo@example.com", "newpass123", "3112233344",
+        User updatedUser = new User(002, "Carlos Mejía", "carlos.nuevo@example.com", "newpass555", "3112233344",
                 LocalDate.of(1990, 5, 12), new BigDecimal("75.0"), new BigDecimal("1.75"),
                 "M", true, 2, "Musculación", Time.valueOf("08:00:00"), Time.valueOf("16:00:00"), null);
 

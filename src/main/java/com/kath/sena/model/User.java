@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class User {
-    private String userId;
+    private int userId;
     private String name;
     private String email;
     private String password;
@@ -25,7 +25,7 @@ public class User {
     // Constructor completo y getters/setters omitidos para brevedad
 
     // Ejemplo constructor que use todos los campos para getAllUsers:
-    public User(String userId, String name, String email, String password, String telefono, LocalDate fechaNacimiento,
+    public User(int userId, String name, String email, String password, String telefono, LocalDate fechaNacimiento,
                 BigDecimal peso, BigDecimal estatura, String sexo, boolean estaActivo, int rolId, String especialidad,
                 Time horarioInicio, Time horarioFin, LocalDateTime fechaRegistro) {
         this.userId = userId;
@@ -45,11 +45,11 @@ public class User {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
